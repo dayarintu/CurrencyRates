@@ -30,7 +30,7 @@ class ViewController: UIViewController {
                         {
                             if let IndianRupee = rates["INR"]
                             {
-                                self.label.text = "\(IndianRupee)"
+                                self.label.text = String(describing: IndianRupee)
                                
                             }
                         }
