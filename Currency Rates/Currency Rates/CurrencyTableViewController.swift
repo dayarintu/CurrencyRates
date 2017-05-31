@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CurrencyTableViewController.swift
 //  Currency Rates
 //
 //  Created by Daya on 5/30/17.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-    @IBOutlet weak var label: UILabel!
-    
+class CurrencyTableViewController: UITableViewController {
+
+    let myJson: [String: String] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         let url = URL(string: "http://api.fixer.io/latest")
         let task = URLSession.shared.dataTask(with: url!) {
@@ -30,8 +30,11 @@ class ViewController: UIViewController {
                         {
                             if let IndianRupee = rates["INR"]
                             {
-                                self.label.text = String(describing: IndianRupee)
-                               
+                                OperationQueue.main.addOperation {
+                                    print(IndianRupee)
+                                }
+                                
+                                
                             }
                         }
                     }
@@ -45,48 +48,26 @@ class ViewController: UIViewController {
         
         task.resume()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
 }
 
-/*
+    
+    // MARK: - Table view data source
 
-Bulgarian Lev	BGN
-Brazilian Real	 BRL
-Canadian Dollar   CAD
-Swiss Franc     CHF
-Chinese Yuan     CNY
-Czech Koruna      CZK
-Danish Krone      DKK
-British Pound      GBP
-Hong Kong Dollar    HKD
-Croatian Kuna        HRK
-Hungarian Forint     HUF
-Indonesian Rupiah    IDR
-Israeli New Shekel    ILS
-Japanese Yen          JPY
-South Korean Won      KRW
-Mexican Peso          MXN
-Malaysian Ringgit     MYR
- Norwegian Krone      NOK
-New Zealand Dollar    NZD
- Philippine Peso      PHP
- Polish Zloty         PLN
- Romanian Leu         RON
- Russian Ruble        RUB
- Swedish Krona        SEK
- Singapore DollaR     SGD
- Thai Baht            THB
- Turkish Lira         TRY
- South African Rand   ZAR
- United States Dollar   USD
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
 
- 
- 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 0
+    }
 
-*/
+public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    return cell
+}
 
+    
