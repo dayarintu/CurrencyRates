@@ -10,9 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var AustralianCurrency = 0
-    var IndianCurrency = 0
-    var BritanCurrency = 0
+    @IBOutlet weak var label: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +28,10 @@ class ViewController: UIViewController {
                         let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
                         if let rates = myJson["rates"] as? NSDictionary
                         {
-                            if let AustralianCurrency = rates["AUD"] ,
-                                let BritanCurrency = rates["GBP"] ,
-                                let IndianCurrency = rates["INR"]
+                            if let IndianRupee = rates["INR"]
                             {
-                                print(IndianCurrency)
-                                print(BritanCurrency)
-                                print(AustralianCurrency)
+                                self.label.text = "\(IndianRupee)"
+                               
                             }
                         }
                     }
@@ -56,4 +52,41 @@ class ViewController: UIViewController {
     }
     
 }
+
+/*
+
+Bulgarian Lev	BGN
+Brazilian Real	 BRL
+Canadian Dollar   CAD
+Swiss Franc     CHF
+Chinese Yuan     CNY
+Czech Koruna      CZK
+Danish Krone      DKK
+British Pound      GBP
+Hong Kong Dollar    HKD
+Croatian Kuna        HRK
+Hungarian Forint     HUF
+Indonesian Rupiah    IDR
+Israeli New Shekel    ILS
+Japanese Yen          JPY
+South Korean Won      KRW
+Mexican Peso          MXN
+Malaysian Ringgit     MYR
+ Norwegian Krone      NOK
+New Zealand Dollar    NZD
+ Philippine Peso      PHP
+ Polish Zloty         PLN
+ Romanian Leu         RON
+ Russian Ruble        RUB
+ Swedish Krona        SEK
+ Singapore DollaR     SGD
+ Thai Baht            THB
+ Turkish Lira         TRY
+ South African Rand   ZAR
+ United States Dollar   USD
+
+ 
+ 
+
+*/
 
